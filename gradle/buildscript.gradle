@@ -1,0 +1,12 @@
+// Executed in context of buildscript
+repositories {
+    repositories {
+        mavenLocal()
+        maven { url = 'http://artifactory.dev.bol.com/artifactory/repo' }
+    }
+}
+
+dependencies {
+    classpath "io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE"
+    classpath "net.saliman:gradle-cobertura-plugin:2.2.7"
+}

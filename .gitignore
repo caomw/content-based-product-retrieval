@@ -1,0 +1,39 @@
+### Eclipse
+.project
+.classpath
+.settings/
+.worksheet/
+bin/
+
+### IDEA
+*.iml
+*.ipr
+*.iws
+*.ids
+out/
+.idea/
+
+### Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.next
+release.properties
+
+### Gradle
+.gradle/
+build/
+
+
+# Vim
+.*.swp
+
+### JRebel
+rebel.xml
+
+### Other
+.cache
+.tmp
+jmeter.log
+trafficservice-api/src/generated/
+trafficservice-api/src/main/xsd/trafficservice-v1.proto
