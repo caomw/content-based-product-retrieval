@@ -32,7 +32,7 @@ allprojects { project ->
     }
 
     task(run, dependsOn: 'classes', type: JavaExec) {
-      main = 'Main'
+      main = 'cbpr.Main'
       classpath = sourceSets.main.runtimeClasspath
     }
 }
