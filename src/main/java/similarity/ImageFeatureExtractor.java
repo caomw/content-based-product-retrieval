@@ -2,15 +2,11 @@ package similarity;
 
 import net.semanticmetadata.lire.DocumentBuilder;
 import net.semanticmetadata.lire.DocumentBuilderFactory;
-import net.semanticmetadata.lire.imageanalysis.CEDD;
-import net.semanticmetadata.lire.imageanalysis.FCTH;
-import net.semanticmetadata.lire.imageanalysis.LireFeature;
-import net.semanticmetadata.lire.imageanalysis.Tamura;
+import net.semanticmetadata.lire.imageanalysis.*;
 import net.semanticmetadata.lire.imageanalysis.opencvfeatures.CvSiftFeature;
-import net.semanticmetadata.lire.imageanalysis.opencvfeatures.CvSurfFeature;
-import net.semanticmetadata.lire.impl.CvSiftDocumentBuilder;
-import net.semanticmetadata.lire.impl.CvSurfDocumentBuilder;
+import net.semanticmetadata.lire.impl.SiftDocumentBuilder;
 import net.semanticmetadata.lire.impl.SimpleBuilder;
+import net.semanticmetadata.lire.impl.SurfDocumentBuilder;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 
@@ -65,12 +61,12 @@ public class ImageFeatureExtractor {
 
     //scale invariant feature transform: local feature (ROI) - SIFT
     public static double[] getSiftFeatureVector(String fullFilePath) throws IOException {
-        return getFeatureVector(fullFilePath, new CvSiftDocumentBuilder(), new CvSiftFeature());
+        return getFeatureVector(fullFilePath, new SiftDocumentBuilder(), new CvSiftFeature());
     }
 
     //speeded up robust feature: local feature (ROI)- SURF
     public static double[] getSurfFeatureVector(String fullFilePath) throws IOException {
-        return getFeatureVector(fullFilePath, new CvSurfDocumentBuilder(), new CvSurfFeature());
+        return getFeatureVector(fullFilePath, new SurfDocumentBuilder(), new SurfFeature());
     }
 
     //Tamura algorithm

@@ -1,6 +1,7 @@
 package service;
 
-import net.semanticmetadata.lire.imageanalysis.opencvfeatures.CvSurfFeature;
+import io.atlassian.fugue.Option;
+import net.semanticmetadata.lire.imageanalysis.SurfFeature;
 import net.semanticmetadata.lire.impl.SimpleBuilder;
 import similarity.ImageFeatureExtractor;
 
@@ -26,14 +27,14 @@ public class SimpleSimilarityRanker {
         ABSOLUTE_DIFF
     }
 
-    public static ArrayList<ImageFeatureExtractor.ImageInImageDatabase> rankAndIndexImagesBasedOnInputtedImage(String fullFilePath, String imageDatabaseDirectory, SimilarityFeature similarityFeature, SimilarityCalculator similarityCalculator) {
-        ArrayList<ImageFeatureExtractor.ImageInImageDatabase> databaseIndex = new ArrayList();
+    public static ArrayList<ImageFeatureExtractor.ImageInImageDatabase> rankAndIndexImagesBasedOnInputtedImage(String fullFilePath, String imageDatabaseDirectory, Option<SimilarityFeature> similarityFeature, Option<SimilarityCalculator> similarityCalculator) {
+        ArrayList<ImageFeatureExtractor.ImageInImageDatabase> databaseIndex = new ArrayList<ImageFeatureExtractor.ImageInImageDatabase>();
 
         try {
             String imageFilePath = fullFilePath;
             String imageDatabaseDirectoryName = imageDatabaseDirectory;
 
-            double[] searchImageFeatureVector = selectFeatureVector(similarityFeature, imageFilePath);
+            double[] searchImageFeatureVector = selectFeatureVector(similarityFeature.getOrElse(SimilarityFeature.TAMURA), imageFilePath);
 
             File directory = new File(imageDatabaseDirectoryName);
 
@@ -47,8 +48,8 @@ public class SimpleSimilarityRanker {
 
             for (String fileName : fileNames) {
 
-                double[] featureVector = selectFeatureVector(similarityFeature, imageDatabaseDirectoryName + fileName);
-                double distanceToSearchImage = selectDistanceCalc(similarityCalculator, featureVector, searchImageFeatureVector);
+                double[] featureVector = selectFeatureVector(similarityFeature.getOrElse(SimilarityFeature.TAMURA), imageDatabaseDirectoryName + fileName);
+                double distanceToSearchImage = selectDistanceCalc(similarityCalculator.getOrElse(SimilarityCalculator.ABSOLUTE_DIFF), featureVector, searchImageFeatureVector);
 
                 ImageFeatureExtractor.ImageInImageDatabase imageInImageDatabase = new ImageFeatureExtractor.ImageInImageDatabase();
 
@@ -85,7 +86,7 @@ public class SimpleSimilarityRanker {
                 return ImageFeatureExtractor.getSiftFeatureVector(fullFilePath);
             }
             case SIMPLE: {
-                return ImageFeatureExtractor.getSimpleFeatureVector(fullFilePath, new CvSurfFeature(), SimpleBuilder.KeypointDetector.CVSURF, ImageFeatureExtractor.Version.V1);
+                return ImageFeatureExtractor.getSimpleFeatureVector(fullFilePath, new SurfFeature(), SimpleBuilder.KeypointDetector.CVSURF, ImageFeatureExtractor.Version.V1);
             }
             case TAMURA: {
                 return ImageFeatureExtractor.getTamuraFeatureVector(fullFilePath);
@@ -120,7 +121,7 @@ public class SimpleSimilarityRanker {
 
     }
 
-    //default euclidean
+    //default abs diff
     private static double selectDistanceCalc(SimilarityCalculator similarityCalculator, double[] vector1, double[] vector2) {
         switch (similarityCalculator) {
             case EUCLIDEAN_DISTANCE: {

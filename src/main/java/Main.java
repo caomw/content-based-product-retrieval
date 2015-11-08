@@ -1,3 +1,4 @@
+import io.atlassian.fugue.Option;
 import service.SimpleSimilarityRanker;
 import similarity.ImageFeatureExtractor;
 
@@ -15,8 +16,8 @@ public class Main {
 
         ArrayList<ImageFeatureExtractor.ImageInImageDatabase> databaseIndex = SimpleSimilarityRanker
                 .rankAndIndexImagesBasedOnInputtedImage(args[1], args[0],
-                    SimpleSimilarityRanker.SimilarityFeature.TAMURA,
-                    SimpleSimilarityRanker.SimilarityCalculator.ABSOLUTE_DIFF);
+                    Option.some(SimpleSimilarityRanker.SimilarityFeature.SIFT),
+                    Option.some(SimpleSimilarityRanker.SimilarityCalculator.ABSOLUTE_DIFF));
 
         databaseIndex.forEach(index -> {
             System.out.println(index.fileName.concat(" has distance to ").concat(args[1]).concat(" = ").concat(Double.toString(index.distanceToSearchImage)));
