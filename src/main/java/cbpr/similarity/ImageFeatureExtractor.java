@@ -1,4 +1,4 @@
-package similarity;
+package cbpr.similarity;
 
 import net.semanticmetadata.lire.DocumentBuilder;
 import net.semanticmetadata.lire.DocumentBuilderFactory;

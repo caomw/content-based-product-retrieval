@@ -6,30 +6,15 @@ apply from: file('gradle/convention.gradle')
 apply from: file('gradle/check.gradle')
 
 allprojects { project ->
-    group = 'com.bol.service.cbpr'
+    group = 'cbpr'
     version = '0.0.1'
 
     apply plugin: 'java'
     apply plugin: 'idea'
     apply plugin: 'maven'
 
-    repositories {
-        mavenLocal()
-        maven { url = 'http://artifactory.dev.bol.com/artifactory/repo' }
-    }
-
     dependencies {
-        compile files('./src/jar/jopensurf.jar')
-        compile files('./src/jar/lire.jar')
-        compile files('./src/jar/commons-math3-3.5.jar')
-        compile files('./src/jar/lucene-5.3.1/core/lucene-core-5.3.1.jar')
-    }
-
-    dependencyManagement {
-        dependencies {
-            dependency 'com.google.guava:guava:18.0'
-            dependency 'com.atlassian.fugue:fugue:2.1.0'
-        }
+        compile files('./src/jar/jopensurf.jar','./src/jar/lire.jar','./src/jar/commons-math3-3.5.jar','./src/jar/lucene-5.3.1/core/lucene-core-5.3.1.jar')
     }
 
     task(run, dependsOn: 'classes', type: JavaExec) {

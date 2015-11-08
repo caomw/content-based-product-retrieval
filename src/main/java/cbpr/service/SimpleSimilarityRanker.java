@@ -1,9 +1,9 @@
-package service;
+package cbpr.service;
 
 import io.atlassian.fugue.Option;
 import net.semanticmetadata.lire.imageanalysis.SurfFeature;
 import net.semanticmetadata.lire.impl.SimpleBuilder;
-import similarity.ImageFeatureExtractor;
+import cbpr.similarity.ImageFeatureExtractor;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -97,7 +97,7 @@ public class SimpleSimilarityRanker {
         }
     }
 
-    //similarity calculator
+    //calculator
     private static double calculateEuclideanDistance(double[] vector1, double[] vector2) {
 
         double innerSum = 0.0;
@@ -109,7 +109,7 @@ public class SimpleSimilarityRanker {
 
     }
 
-    //similarity calculator
+    //calculator
     private static double calculateAbsoluteDifference(double[] vector1, double[] vector2) {
 
         double innerSum = 0.0;

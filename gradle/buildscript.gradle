@@ -7,6 +7,7 @@ repositories {
 }
 
 dependencies {
+    classpath "com.atlassian.fugue:fugue:2.1.0"
     classpath "io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE"
     classpath "net.saliman:gradle-cobertura-plugin:2.2.7"
 }

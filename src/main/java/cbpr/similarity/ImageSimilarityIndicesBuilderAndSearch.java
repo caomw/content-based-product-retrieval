@@ -1,4 +1,4 @@
-package similarity;
+package cbpr.similarity;
 
 import net.semanticmetadata.lire.ImageSearchHits;
 import net.semanticmetadata.lire.impl.ChainedDocumentBuilder;

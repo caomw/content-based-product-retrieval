@@ -1,6 +1,8 @@
+package cbpr;
+
 import io.atlassian.fugue.Option;
-import service.SimpleSimilarityRanker;
-import similarity.ImageFeatureExtractor;
+import cbpr.service.SimpleSimilarityRanker;
+import cbpr.similarity.ImageFeatureExtractor;
 
 import java.io.IOException;
 import java.util.ArrayList;
