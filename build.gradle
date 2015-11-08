@@ -13,8 +13,22 @@ allprojects { project ->
     apply plugin: 'idea'
     apply plugin: 'maven'
 
+    repositories {
+        repositories {
+            mavenLocal()
+            maven { url = 'http://artifactory.dev.bol.com/artifactory/repo' }
+        }
+    }
+
+    dependencyManagement {
+        dependencies {
+            dependency 'io.atlassian.fugue:fugue:3.0.0'
+        }
+    }
+
     dependencies {
         compile files('./src/jar/jopensurf.jar','./src/jar/lire.jar','./src/jar/commons-math3-3.5.jar','./src/jar/lucene-5.3.1/core/lucene-core-5.3.1.jar')
+        compile 'io.atlassian.fugue:fugue'
     }
 
     task(run, dependsOn: 'classes', type: JavaExec) {
