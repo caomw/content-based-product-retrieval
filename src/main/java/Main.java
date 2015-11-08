@@ -22,7 +22,7 @@ public class Main {
         String imageDatabaseDirectoryName = args[0];
         String searchImageFilePath = args[1];
 
-        double[] searchImageFeatureVector = ImageSimilarityEngine.getFCTHFeatureVector(searchImageFilePath);
+        double[] searchImageFeatureVector = ImageSimilarityEngine.getSimpleFeatureVector(searchImageFilePath);
 
         System.out.println("Search image FCTH vector: " + Arrays.toString(searchImageFeatureVector));
 
@@ -40,7 +40,7 @@ public class Main {
 
         for (String fileName : fileNames) {
 
-            double[] fcthFeatureVector = ImageSimilarityEngine.getFCTHFeatureVector(imageDatabaseDirectoryName + fileName);
+            double[] fcthFeatureVector = ImageSimilarityEngine.getSimpleFeatureVector(imageDatabaseDirectoryName + fileName);
             double distanceToSearchImage = ImageSimilarityEngine.calculateEuclideanDistance(fcthFeatureVector, searchImageFeatureVector);
 
             ImageSimilarityEngine.ImageInImageDatabase imageInImageDatabase = new ImageSimilarityEngine.ImageInImageDatabase();
