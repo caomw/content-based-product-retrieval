@@ -2,7 +2,6 @@
 status = project.hasProperty('preferredStatus')?project.preferredStatus:(version.contains('SNAPSHOT')?'snapshot':'release')
 
 allprojects { project ->
-    apply plugin: 'bol-base'
     apply plugin: "io.spring.dependency-management"
     apply plugin: 'java'
     apply plugin: 'idea'
