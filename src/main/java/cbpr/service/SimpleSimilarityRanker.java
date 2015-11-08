@@ -14,12 +14,24 @@ import java.util.Collections;
 public class SimpleSimilarityRanker {
 
     public static enum SimilarityFeature {
-        FCTH,
-        CEDD,
-        TAMURA,
-        SURF,
-        SIFT,
-        SIMPLE //slow, it's not recommended for now, by default use SURF
+        FCTH("fcth"),
+        CEDD("cedd"),
+        TAMURA("tamura"),
+        SURF("surf"),
+        SIFT("sift"),
+        SIMPLE("simple") //slow, it's not recommended for now, by default use SURF
+        ;
+
+        private String description;
+
+        SimilarityFeature(String description) {
+            this.description = description;
+        }
+
+
+        public String getDescription() {
+            return description;
+        }
     }
 
     public static enum SimilarityCalculator {
