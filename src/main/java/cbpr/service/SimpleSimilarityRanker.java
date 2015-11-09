@@ -43,8 +43,9 @@ public class SimpleSimilarityRanker {
         ArrayList<ImageFeatureExtractor.ImageInImageDatabase> databaseIndex = new ArrayList<ImageFeatureExtractor.ImageInImageDatabase>();
 
         try {
-            String imageFilePath = fullFilePath;
-            String imageDatabaseDirectoryName = imageDatabaseDirectory;
+            String canonicalPath = System.getProperty("user.dir");
+            String imageFilePath = canonicalPath + fullFilePath;
+            String imageDatabaseDirectoryName = canonicalPath + imageDatabaseDirectory;
 
             double[] searchImageFeatureVector = selectFeatureVector(similarityFeature.getOrElse(SimilarityFeature.TAMURA), imageFilePath);
 

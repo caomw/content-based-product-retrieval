@@ -12,8 +12,8 @@ public class Main {
         String[] paths = args;
         if (args.length != 2) {
             paths = new String[2];
-            paths[1] = "images/gucci1.jpeg";
-            paths[0] = "images/search/";
+            paths[1] = "/images/gucci1.jpeg";
+            paths[0] = "/images/search/";
         }
         final String filePath = paths[1];
 
