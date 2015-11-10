@@ -35,6 +35,18 @@ allprojects { project ->
       main = 'cbpr.Main'
       classpath = sourceSets.main.runtimeClasspath
     }
+
+    //create a single Jar with all dependencies
+    task fatJar(type: Jar) {
+        manifest {
+            attributes 'content-based-product-retrieval': 'cbpr',
+                    'version': "0.0.1",
+                    'Main-Class': 'cbpr.Main'
+        }
+        baseName = project.name + '-all'
+        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+        with jar
+    }
 }
 
 
